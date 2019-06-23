@@ -1,0 +1,51 @@
+{{ set(this, 'title', 'Contact') }}
+{{ set(this, 'params', { 'breadcrumbs' : { '' : this.title } }) }}
+
+<div class="main">
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto">
+                    <h2 class="title">{{ this.title }}</h2>
+                    <h5 class="description">
+                        If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.
+                    </h5>
+                    <br>
+                    {% set form = active_form_begin({'id' : 'contact-form'}) %}
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{ form.field(
+                                model,
+                                'name',
+                                {'template' : '{label}\n<div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="nc-icon nc-single-02"></i></span></div>{input}</div>\n{hint}\n{error}'}
+                            ).textInput({
+                                'autofocus' : true }) | raw }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form.field(model, 'email',
+                                {'template' : '{label}\n<div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="nc-icon nc-email-85"></i></span></div>{input}</div>\n{hint}\n{error}'}
+                            ) | raw }}
+                        </div>
+                    </div>
+
+                    {{ form.field(model, 'subject') | raw }}
+                    {{ form.field(model, 'body').textarea({'rows' : 6}) | raw }}
+                    {{ form.field(model, 'verifyCode').widget(
+                        'yii\\captcha\\Captcha',
+                        {'template' : '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>'})
+                    | raw }}
+
+
+                    <div class="row">
+                        <div class="col-md-4 ml-auto mr-auto">
+                            <button type="submit" class="btn btn-danger btn-lg btn-fill">Send Message</button>
+                        </div>
+                    </div>
+
+                    {{ active_form_end() }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+{{ set(this, 'title', 'Login') }}
+
+<div class="card card-register">
+    <h3 class="title mx-auto">{{ this.title }}</h3>
+    {% set form = active_form_begin({'id' : 'login-form', 'class' : 'register-form'}) %}
+
+    {{ form.field(model, 'username').textInput({'autofocus' : true}) | raw }}
+    {{ form.field(model, 'password').passwordInput() | raw }}
+
+    <button type="submit" class="btn btn-danger btn-block btn-round">Login</button>
+
+    {{ active_form_end() }}
+    <div class="forgot">
+        <a href="{{ url.to('/site/request-password-reset') }}" class="btn btn-link btn-danger">Forgot password?</a>
+        <a href="{{ url.to('/site/resend-verification-email') }}" class="btn btn-link btn-danger">Resend verification
+            Email</a>
+    </div>
+</div>

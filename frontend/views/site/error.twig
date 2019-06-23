@@ -1,0 +1,16 @@
+{{ set(this, 'title', name) }}
+{% set transperent = true %}
+
+<div class="background-img error-page">
+    <div class="filter"></div>
+    <div class="container">
+        <div class="row">
+            <h1 class="title"> &nbsp;{{ name | split('(#')[1] | split(')')[0] }}
+                <br/>
+                <p class="error-msg">{{ message }}
+                 <br />The above error occurred while the Web server was processing your request.
+                <br />Please contact us if you think this is a server error. Thank you.</p>
+            </h1>
+        </div>
+    </div>
+</div>

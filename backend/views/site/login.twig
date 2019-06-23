@@ -1,0 +1,49 @@
+{{ use('yii/bootstrap/ActiveForm') }}
+
+{{ set(this,'title','Login') }}
+
+<div class="login-box">
+    <div class="login-logo">
+        <a href="#">CocktailsBar</a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+        <p class="login-box-msg">Sign in to start your session</p>
+
+        {% set form = active_form_begin({
+            'id' : 'login-form',
+            'enableClientValidation' : false,
+        }) %}
+
+        {{ form.field(model, 'username', {
+            'options' : {'class' : 'form-group has-feedback'},
+            'inputTemplate' : '{input}<span class="glyphicon glyphicon-envelope form-control-feedback"></span>'
+        }).label(false).textInput({
+            'placeholder' : model.getAttributeLabel('username')
+        }) | raw }}
+
+        {{ form.field(model, 'password', {
+            'options' : {'class' : 'form-group has-feedback'},
+            'inputTemplate' : '{input}<span class="glyphicon glyphicon-lock form-control-feedback"></span>'
+        }).label(false).passwordInput({
+            'placeholder' : model.getAttributeLabel('password')
+        }) | raw }}
+
+        <div class="row">
+            <div class="col-xs-8">
+                {{ form.field(model, 'rememberMe').checkbox() | raw }}
+            </div>
+            <!-- /.col -->
+            <div class="col-xs-4">
+                {{ html.submitButton('Sign in', {
+                    'class' : 'btn btn-primary btn-block btn-flat',
+                    'name' : 'login-button'
+                }) | raw }}
+            </div>
+            <!-- /.col -->
+        </div>
+
+        {{ active_form_end() }}
+    </div>
+    <!-- /.login-box-body -->
+</div><!-- /.login-box -->

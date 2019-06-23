@@ -1,0 +1,12 @@
+{{ set(this, 'title', 'Resend verification email') }}
+
+<div class="card card-register">
+    <h3 class="title mx-auto text-center">{{ this.title }}</h3>
+    {% set form = active_form_begin({'id' : 'resend-verification-email-form', 'class' : 'register-form'}) %}
+
+    {{ form.field(model, 'email').textInput({'autofocus' : true}) | raw }}
+
+    <button type="submit" class="btn btn-danger btn-block btn-round">Send</button>
+
+    {{ active_form_end() }}
+</div>

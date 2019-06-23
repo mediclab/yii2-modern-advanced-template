@@ -1,0 +1,14 @@
+{{ set(this, 'title', 'Signup') }}
+
+<div class="card card-register">
+    <h3 class="title mx-auto">{{ this.title }}</h3>
+    {% set form = active_form_begin({'id' : 'signup-form', 'class' : 'register-form'}) %}
+
+    {{ form.field(model, 'username').textInput({'autofocus' : true}) | raw }}
+    {{ form.field(model, 'email') | raw }}
+    {{ form.field(model, 'password').passwordInput() | raw }}
+
+    <button type="submit" class="btn btn-danger btn-block btn-round">Signup</button>
+
+    {{ active_form_end() }}
+</div>
